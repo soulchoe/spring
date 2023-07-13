@@ -3,10 +3,11 @@
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
-	<!-- 어떤 서블릿에서도 모두 접근할 수 있는 전역변수라고 생각하면 됨 -->
+	<!-- 어떤 서블릿에서도 모두 접근할 수 있는 전역변수라고 생각하면 됨, bean configuration파일을 새로 만들때마다 반드시 여기서 등록해줘여함 -->
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
+			/WEB-INF/spring/security-context.xml
 		</param-value>
 	</context-param>
 	
@@ -50,4 +51,8 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+<!-- 	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/common/error/error500.jsp</location>
+	</error-page> 에러페이지 따로 등록해서 발생시 모든 로그가 보이지않도록-->
 </web-app>

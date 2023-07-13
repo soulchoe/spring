@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,8 @@ import com.bs.spring.demo.service.DemoService;
 
 @Controller
 public class DemoController {
+	
+	private Logger logger=LoggerFactory.getLogger(DemoController.class);
 	
 	@Autowired
 	private DemoService service;
@@ -74,14 +78,15 @@ public class DemoController {
 	//서블릿방식으로 매핑메소드 이용하기
 	@RequestMapping("/demo/demo1.do")
 	public void demo1(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		System.out.println(req);
-		System.out.println(res);
+		logger.debug("request : {}", req);//로거의 인수는 스트링만 가능해서 이렇게 써주면 알아서 스트링으로 바꿔서 넣어줌
+		logger.debug("response : {}", res);
 		String devname=req.getParameter("devName");
 		int devAge=Integer.parseInt(req.getParameter("devAge"));
 		String devGender=req.getParameter("devGender");
 		String devEmail=req.getParameter("devEmail");
 		String[] devLang=req.getParameterValues("devLang");
-		System.out.println(devname+devAge+devGender+devEmail);
+		logger.debug(devname+devAge+devGender+devEmail);
+		//System.out.println(devname+devAge+devGender+devEmail);
 		for(String l:devLang) {
 			System.out.println(l);
 		}
