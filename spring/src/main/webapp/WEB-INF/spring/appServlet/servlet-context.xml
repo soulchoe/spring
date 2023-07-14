@@ -78,6 +78,25 @@
 	</beans:bean>
 	
 	
+	<!-- 인터셉터 등록하기-->
+	<interceptors>
+		<interceptor>
+			<mapping path="/demo/*"/>
+			<!-- <exclude-mapping path="/demo/demo.do"/> -->
+			<beans:bean class="com.bs.spring.common.interceptor.LoggerInterceptor"/>
+		</interceptor>
+		<!-- <interceptor>
+			<mapping path="/demo/selectDemoAll.do"/>
+			<mapping path="/memo/*"/>
+			<beans:ref bean="loginCheck"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/memo/*"/>
+			<beans:ref bean="adminCheck"/>
+		</interceptor> -->
+	</interceptors>
+	<beans:bean id="loginCheck" class="com.bs.spring.common.interceptor.LoginCheckInterceptor"/>
+	<beans:bean id="adminCheck" class="com.bs.spring.common.interceptor.AdminCheckInterceptor"/>
 	
 	<beans:import resource="../root-context.xml"/><!-- 다른 configuration을 가져올 수 있음 -->
 </beans:beans>

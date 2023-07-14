@@ -231,10 +231,11 @@ public class DemoController {
 	}
 	
 	@RequestMapping("/demo/selectDemoAll.do")
-	public String selectDemoAll(Model m) {
+	public String selectDemoAll(Model m){
 		
 		List<Demo> devs=service.selectDemoAll();
 		m.addAttribute("devs",devs);
+		devs.forEach(System.out::println);
 		return "demo/demoList";
 	}
 	

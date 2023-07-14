@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+      
+   <!-- xml방식으로 aop 적용하기 -->
+   <bean id="loggerAspect" class="com.bs.spring.common.aop.LoggerAspect"/>
+   <aop:config>
+   		<aop:aspect ref="loggerAspect">
+   			<aop:pointcut expression="execution(* com.bs.spring..select*(..))" id="logPointcut"/>
+   			<!-- expression="execution(*:모든 접근제한자와 리턴타입 com.bs.spring.memo.:해당위치의.*:모든 클래스(..):그안에 매개변수에 상관없이)" -->
+   			<!-- expression="execution(*:모든 접근제한자와 리턴타입 com.bs.spring..:해당위치의 아래 모든 패키지 select*:셀렉트로 시작하는 모든 메소드(..):그 매개변수에 상관없이)" -->
+   			<aop:before method="loggerBefore" pointcut-ref="logPointcut"/>
+   			<aop:after method="loggerAfter" pointcut-ref="logPointcut"/>
+   		</aop:aspect>
+   </aop:config>
+   
+</beans>
