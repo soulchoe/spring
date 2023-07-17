@@ -42,7 +42,7 @@
 	
 		<!-- Application Loggers -->
 	<logger name="com.bs.spring">
-		<level value="debug" />
+		<level value="info" />
 		<!-- level: 구현체를 이용해 용도에 따라 로그를 출력할 때 그 레벨을 나눠놨음. 개발에 필요한, 고객이 알아야하는, 등등 -->
 		<appender-ref ref="fileAppender"/><!-- 이 설정으로 인해 파일과 콘솔에 둘다 찍힐거야 -->
 	</logger>

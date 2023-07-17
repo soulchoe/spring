@@ -17,4 +17,8 @@
    		</aop:aspect>
    </aop:config>
    
+  
+   <!-- annotation방식으로 aop적용하기 -->
+   <aop:aspectj-autoproxy/>
+   
 </beans>

@@ -56,4 +56,8 @@
 		<error-code>500</error-code>
 		<location>/WEB-INF/views/common/error/error500.jsp</location>
 	</error-page> 에러페이지 따로 등록해서 발생시 모든 로그가 보이지않도록-->
+	<error-page>
+		<exception-type>com.bs.spring.common.AuthenticationException</exception-type>
+		<location>/WEB-INF/views/common/error/authentication.jsp</location>
+	</error-page>
 </web-app>

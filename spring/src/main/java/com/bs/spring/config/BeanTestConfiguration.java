@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.core.annotation.Order;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.bs.spring.beantest.Animal;
 import com.bs.spring.beantest.Department;
@@ -16,6 +17,7 @@ import com.bs.spring.beantest.Employee;
 //pojo클래스를 configuration으로 사용할 수 있음 ->@Configuration어노테이션 이용
 
 @Configuration
+@EnableWebMvc
 @ComponentScan(basePackages="com.bs.spring",//기본위치 설정가능
 				includeFilters= {
 						@ComponentScan.Filter(
