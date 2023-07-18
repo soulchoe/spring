@@ -11,18 +11,25 @@
 	 <div id="board-container">
         <input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle"  
         	value="${b.boardTitle }" required>
-        <input type="text" class="form-control" name="boardWriter" value="${b.boardWriter.userId }" readonly required>
-
-            <button type="button" 
+        <input type="text" class="form-control" name="boardWriter" value="${b.boardWriter.userId}" readonly required>
+		<c:if test="${not empty b.file }">
+			<c:forEach var="f" items="${b.file }">
+            	<button type="button" 
                     class="btn btn-outline-success btn-block"
-                    onclick="">첨부파일
-            </button>
-        
-        
+                    onclick="fn_fileDownload('${f.originalFilename}','${f.renamedFilename }')">${f.originalFilename }
+            	</button>
+        	</c:forEach>
+        </c:if>
         <textarea class="form-control" name="boardContent" placeholder="내용" required>${b.boardContent }</textarea>
+    	<button type="button" class="form-control btn-outline-danger" onclick="location.assign('${path}/board/deleteBoard.do?no=${b.boardNo }')">
+    	삭제</button>
     </div>
-
-     <style>
+	<script>
+		function fn_fileDownload(oriName,reName){
+			location.assign("${path}/board/fileDownload?oriname="+oriName+"&rename="+reName);
+		}
+	</script>
+    <style>
     div#board-container{width:400px; margin:0 auto; text-align:center;}
     div#board-container input,div#board-container button{margin-bottom:15px;}
     div#board-container label.custom-file-label{text-align:left;}

@@ -103,4 +103,14 @@
 	<beans:bean id="adminCheck" class="com.bs.spring.common.interceptor.AdminCheckInterceptor"/>
 	
 	<beans:import resource="../root-context.xml"/><!-- 다른 configuration을 가져올 수 있음 -->
+
+	<!-- 
+		파일업로드를 처리할 리졸버 등록하기
+		CommonMultipartRresolver클래스를 빈으로 등록
+	 -->
+	 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	 	<beans:property name="maxUploadSize" value="104857600"/>
+	 </beans:bean>
+
+
 </beans:beans>

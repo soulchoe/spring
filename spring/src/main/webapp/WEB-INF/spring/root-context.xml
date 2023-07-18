@@ -37,5 +37,30 @@
 	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sessionFactory"/>
 	</bean>
+	
+	<!-- 
+		트랜젝션 설정하기
+		*가장먼저 DataSourceTransactionManager를 빈으로 등록해야한다
+		1.어노테이션 설정하기
+		<tx:annotation-driven>태그를 설정
+	 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="proxyDataSource"/>
+	</bean>
+	<!-- <tx:annotation-driven transaction-manager="transactionManager"/>-->
+	
+	<!-- 
+		xml방식(선언자방식)으로 트렌젝션 설정하기
+	 -->
+	 <tx:advice id="txadvice" transaction-manager="transactionManager">
+	 	<tx:attributes>
+	 		<tx:method name="insert*"/>
+	 	</tx:attributes>
+	 </tx:advice>
+	 <aop:config>
+	 	<aop:pointcut expression="within(com.bs.spring..*ServiceImpl)" id="transpo"/>
+	 	<!-- 일괄적으로 다수의 메소드에 트렌젝션 설정하기에 유리, 표현식 패턴으로만 적어주면되니깐 -->
+	 	<aop:advisor advice-ref="txadvice" pointcut-ref="transpo"/>
+	 </aop:config>
 
 </beans>
